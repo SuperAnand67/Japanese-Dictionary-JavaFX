@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# for get sudo permissions
+chmod 777 /opt/japanesedictionary/lib/app/kanjiDict.db
+chmod 777 /opt/japanesedictionary/lib/app/
+
+# for add it into Path
+ln -sf /opt/japanesedictionary/bin/japanesedictionary /usr/bin/japanesedictionary
