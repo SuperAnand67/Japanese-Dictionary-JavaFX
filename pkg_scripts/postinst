@@ -4,5 +4,9 @@
 chmod 777 /opt/japanesedictionary/lib/app/kanjiDict.db
 chmod 777 /opt/japanesedictionary/lib/app/
 
+
+# for making it as executable
+chmod +x /opt/japanesedictionary/bin/japanesedictionary
+
 # for add it into Path
 ln -sf /opt/japanesedictionary/bin/japanesedictionary /usr/bin/japanesedictionary
