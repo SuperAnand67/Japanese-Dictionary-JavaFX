@@ -10,8 +10,8 @@ import java.util.List;
  * @author superanand67
  */
 public class DataBaseManager {
-    //String url = "jdbc:sqlite:/opt/japanesedictionary/lib/app/kanjiDict.db";
-    String url = "jdbc:sqlite:kanjiDict.db";
+    String url = "jdbc:sqlite:/opt/japanesedictionary/lib/app/kanjiDict.db";
+    //String url = "jdbc:sqlite:kanjiDict.db";
     Connection con;
 
     public DataBaseManager() {
