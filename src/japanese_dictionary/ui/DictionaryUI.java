@@ -27,7 +27,8 @@ public class DictionaryUI{
         VBox kanji = new VBox(15);
         GridPane details = new GridPane();
         GridPane list = new GridPane(10,15);
-        HBox welcome = new HBox();
+        VBox welcome = new VBox(70);
+        HBox BMK = new HBox(15);
         
         details.setHgap(10);
         details.setVgap(15);
@@ -35,9 +36,17 @@ public class DictionaryUI{
         root.setCenter(welcome);
         root.setTop(search);
         root.setPadding(new Insets(15));
+        root.setBottom(BMK);
         
         Button searchbtn = new Button("Search 🔎");
-                
+        Button bookmarked = new Button("☆");
+        Button bookmarks = new Button("Bookmarks ★");
+        Button home = new Button("🏠 Home");
+        
+        BMK.getChildren().add(bookmarks);
+        BMK.setAlignment(Pos.CENTER);
+        //★
+                        
         Label ListKanji = new Label("男");
         ListKanji.setFont(Font.font(font1,FontWeight.BOLD,50));
         Label ListMean = new Label("Male");
@@ -49,7 +58,7 @@ public class DictionaryUI{
         wel.setFont(Font.font(font1,FontWeight.BOLD,25));
         welcome.setAlignment(Pos.CENTER);
         
-        welcome.getChildren().add(wel);
+        welcome.getChildren().addAll(wel,BMK);
                 
         TextField s = new TextField();
              
@@ -83,8 +92,12 @@ public class DictionaryUI{
         Label sto = new Label("Text");
         sto.setFont(Font.font(font1,FontWeight.MEDIUM,13));
         
-        ListView<String> wordList = new ListView<>();
+        home.setOnAction((event) -> {
+            root.setCenter(welcome);
+        });
         
+        ListView<String> wordList = new ListView<>();
+                
         wordList.setStyle("-fx-font-size:18px;");
         
         searchbtn.setDefaultButton(true);
@@ -125,7 +138,14 @@ public class DictionaryUI{
                                 kunm.setText(detail.getKunyomi());
                                 mean.setText(detail.getMeaning());
                                 sto.setText(String.valueOf(detail.getStrokes()));
-
+                                
+                                if(dbManager.BmkBtn(kanjiS)) {
+                                    bookmarked.setText("★");
+                                }
+                                else {
+                                    bookmarked.setText("☆");
+                                }
+                                
                                 root.setCenter(kanji);                               
                             }
                         });
@@ -137,13 +157,78 @@ public class DictionaryUI{
                 wel.setText("Please Enter a word to search!");
             } 
         });
+        
+        bookmarked.setOnAction((event) -> {
+            
+            String kan = k.getText();
+            
+            if("☆".equals(bookmarked.getText())) {
+                bookmarked.setText("★");
+                
+                System.out.println("Bookmarked : " + kan);
+                
+                dbManager.bookmarked(1, kan);
+            }
+            else {
+                bookmarked.setText("☆");
+                               
+                System.out.println("UnBookmarked : " + kan);
+                
+                dbManager.bookmarked(0, kan);
+            }   
+        });
+        
+        bookmarks.setOnAction((event) -> {
+           
+            List<KanjiList> BmkLst = dbManager.bookmarks();
+            
+            for(KanjiList words : BmkLst) {
+                                              
+                wordList.getItems().add(words.getKanji() + " : " + words.getMeaning());
+            }
+            
+            if(wordList.getItems().isEmpty()) {
+                System.out.println("No BookMarks Found !!!");
+                root.setCenter(wel);
+                wel.setText("No BookMarks Found !!!");
+            }
+            else {
+                root.setCenter(wordList);
+                
+                wordList.getSelectionModel().selectedItemProperty().addListener((observe,oldval,newval) -> {
+                    if (newval != null) {
+                        String kanjiS = newval.split(":")[0].trim();
 
+                        KanjiList detail = dbManager.getKanji(kanjiS);
+
+                        k.setText(detail.getKanji());
+                        onm.setText(detail.getOnyomi());
+                        kunm.setText(detail.getKunyomi());
+                        mean.setText(detail.getMeaning());
+                        sto.setText(String.valueOf(detail.getStrokes()));
+                        
+                        if(dbManager.BmkBtn(kanjiS)) {
+                            bookmarked.setText("★");
+                        }
+                        else{
+                            bookmarked.setText("☆");
+                        }
+                        
+                        root.setCenter(kanji);                               
+                    }
+                
+                });
+            }
+        });
+               
         details.add(on,3,0);
         details.add(onm,4,0);
         details.add(kun,3,1);
         details.add(kunm,4,1);
         details.add(st,3,2);
         details.add(sto,4,2);
+        details.add(bookmarked,33,1);
+        details.add(home,15,6);
         
         HBox.setHgrow(s, Priority.ALWAYS);
         

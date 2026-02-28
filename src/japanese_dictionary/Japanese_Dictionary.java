@@ -11,14 +11,14 @@ import static javafx.application.Application.launch;
 import javafx.stage.Stage;
 import japanese_dictionary.ui.DictionaryUI;
 
-public class Japanese_Dictionary extends Application{
+public class Japanese_Dictionary extends Application {
        
         @Override
         public void start(Stage primaryStage) throws Exception {
             
             DictionaryUI myUI = new DictionaryUI();
             
-            Scene sc = new Scene(myUI.BuildUI(),500,400);
+            Scene sc = new Scene(myUI.BuildUI(),600,500);
         
             primaryStage.setTitle("Japanese Dictionary");
             primaryStage.setScene(sc);
