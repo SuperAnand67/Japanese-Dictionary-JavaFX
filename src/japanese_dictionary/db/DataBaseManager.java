@@ -107,12 +107,13 @@ public class DataBaseManager {
 
             ResultSet rs = pst2.executeQuery();
             
-            resultWord = new KanjiList(rs.getString("kanji"),
-                                          rs.getString("onyomi"),
-                                         rs.getString("kunyomi"),
-                                         rs.getString("meaning"),
-                                         rs.getInt("strokes"));
-
+            if(rs.next()) {
+                resultWord = new KanjiList(rs.getString("kanji"),
+                                              rs.getString("onyomi"),
+                                             rs.getString("kunyomi"),
+                                             rs.getString("meaning"),
+                                             rs.getInt("strokes"));
+            }
         }
         catch (SQLException e) {
             e.printStackTrace();

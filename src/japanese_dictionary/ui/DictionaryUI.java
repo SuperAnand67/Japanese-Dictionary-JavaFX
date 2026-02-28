@@ -92,9 +92,7 @@ public class DictionaryUI{
         Label sto = new Label("Text");
         sto.setFont(Font.font(font1,FontWeight.MEDIUM,13));
         
-        home.setOnAction((event) -> {
-            root.setCenter(welcome);
-        });
+        
         
         ListView<String> wordList = new ListView<>();
                 
@@ -126,30 +124,7 @@ public class DictionaryUI{
                     
                     else{
                         root.setCenter(wordList);
-                        
-                        wordList.getSelectionModel().selectedItemProperty().addListener((observe,oldval,newval) -> {
-                            if (newval != null) {
-                                String kanjiS = newval.split(":")[0].trim();
-                                
-                                KanjiList detail = dbManager.getKanji(kanjiS);
-                                                                  
-                                k.setText(detail.getKanji());
-                                onm.setText(detail.getOnyomi());
-                                kunm.setText(detail.getKunyomi());
-                                mean.setText(detail.getMeaning());
-                                sto.setText(String.valueOf(detail.getStrokes()));
-                                
-                                if(dbManager.BmkBtn(kanjiS)) {
-                                    bookmarked.setText("★");
-                                }
-                                else {
-                                    bookmarked.setText("☆");
-                                }
-                                
-                                root.setCenter(kanji);                               
-                            }
-                        });
-                    }                                   
+                     }                                   
             }
             else {
                 System.out.println("Please Enter a word to search!");
@@ -182,6 +157,8 @@ public class DictionaryUI{
            
             List<KanjiList> BmkLst = dbManager.bookmarks();
             
+            wordList.getItems().clear();
+            
             for(KanjiList words : BmkLst) {
                                               
                 wordList.getItems().add(words.getKanji() + " : " + words.getMeaning());
@@ -194,33 +171,39 @@ public class DictionaryUI{
             }
             else {
                 root.setCenter(wordList);
-                
-                wordList.getSelectionModel().selectedItemProperty().addListener((observe,oldval,newval) -> {
-                    if (newval != null) {
-                        String kanjiS = newval.split(":")[0].trim();
-
-                        KanjiList detail = dbManager.getKanji(kanjiS);
-
-                        k.setText(detail.getKanji());
-                        onm.setText(detail.getOnyomi());
-                        kunm.setText(detail.getKunyomi());
-                        mean.setText(detail.getMeaning());
-                        sto.setText(String.valueOf(detail.getStrokes()));
-                        
-                        if(dbManager.BmkBtn(kanjiS)) {
-                            bookmarked.setText("★");
-                        }
-                        else{
-                            bookmarked.setText("☆");
-                        }
-                        
-                        root.setCenter(kanji);                               
-                    }
-                
-                });
             }
         });
-               
+        
+        home.setOnAction((event) -> {
+            
+            s.clear();
+            wel.setText("Search for a Kanji to Begin !");
+            root.setCenter(welcome);
+        });
+        
+        wordList.getSelectionModel().selectedItemProperty().addListener((observe,oldval,newval) -> {
+                            if (newval != null) {
+                                String kanjiS = newval.split(":")[0].trim();
+                                
+                                KanjiList detail = dbManager.getKanji(kanjiS);
+                                                                  
+                                k.setText(detail.getKanji());
+                                onm.setText(detail.getOnyomi());
+                                kunm.setText(detail.getKunyomi());
+                                mean.setText(detail.getMeaning());
+                                sto.setText(String.valueOf(detail.getStrokes()));
+                                
+                                if(dbManager.BmkBtn(kanjiS)) {
+                                    bookmarked.setText("★");
+                                }
+                                else {
+                                    bookmarked.setText("☆");
+                                }
+                                
+                                root.setCenter(kanji);                               
+                            }
+                        });
+        
         details.add(on,3,0);
         details.add(onm,4,0);
         details.add(kun,3,1);
