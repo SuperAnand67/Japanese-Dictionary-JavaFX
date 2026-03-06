@@ -32,23 +32,23 @@ public class DataBaseManager {
         
         try {
            
-//           if (!appFolder.exists()) {
-//            appFolder.mkdirs();
-//            } 
-//            
-//           if (!dbFile.exists()) {
-//                System.out.println("Installing Database .....");
-//            
-//                InputStream in = getClass().getResourceAsStream("/japanese_dictionary/kanjiDict.db");
-//            
-//                Files.copy(in, dbFile.toPath(),StandardCopyOption.REPLACE_EXISTING);
-//            
-//                in.close();
-//            } 
+           if (!appFolder.exists()) {
+            appFolder.mkdirs();
+            } 
+            
+           if (!dbFile.exists()) {
+                System.out.println("Installing Database .....");
+            
+                InputStream in = getClass().getResourceAsStream("/japanese_dictionary/kanjiDict.db");
+            
+                Files.copy(in, dbFile.toPath(),StandardCopyOption.REPLACE_EXISTING);
+            
+                in.close();
+            } 
            
            url = "jdbc:sqlite:" + dbFile.getAbsolutePath();
            
-           con = DriverManager.getConnection(urlT);
+           con = DriverManager.getConnection(url);
             System.out.println("Successfully Connected to Database !!!!");
         }
         catch (Exception e) {
