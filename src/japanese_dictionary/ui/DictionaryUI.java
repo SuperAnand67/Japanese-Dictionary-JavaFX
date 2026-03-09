@@ -85,13 +85,13 @@ public class DictionaryUI{
         
         //Meanings Column result
         Label onm = new Label("Text");
-        onm.setFont(Font.font(font1,FontWeight.MEDIUM,13));
+        onm.setFont(Font.font(font1,FontWeight.MEDIUM,15));
         
         Label kunm = new Label("Text");
-        kunm.setFont(Font.font(font1,FontWeight.MEDIUM,13));
+        kunm.setFont(Font.font(font1,FontWeight.MEDIUM,15));
         
         Label sto = new Label("Text");
-        sto.setFont(Font.font(font1,FontWeight.MEDIUM,13));
+        sto.setFont(Font.font(font1,FontWeight.MEDIUM,15));
         
                 
         ListView<String> wordList = new ListView<>();
