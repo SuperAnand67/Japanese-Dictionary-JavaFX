@@ -42,8 +42,9 @@ public class DictionaryUI{
         Button bookmarked = new Button("☆");
         Button bookmarks = new Button("Bookmarks ★");
         Button home = new Button("🏠 Home");
+        Button showAll = new Button("Show All");
         
-        BMK.getChildren().add(bookmarks);
+        BMK.getChildren().addAll(showAll,bookmarks);
         BMK.setAlignment(Pos.CENTER);
         //★
                         
@@ -92,8 +93,7 @@ public class DictionaryUI{
         Label sto = new Label("Text");
         sto.setFont(Font.font(font1,FontWeight.MEDIUM,13));
         
-        
-        
+                
         ListView<String> wordList = new ListView<>();
                 
         wordList.setStyle("-fx-font-size:18px;");
@@ -179,6 +179,25 @@ public class DictionaryUI{
             s.clear();
             wel.setText("Search for a Kanji to Begin !");
             root.setCenter(welcome);
+        });
+        
+        showAll.setOnAction((event) -> {
+            List<KanjiList> AllKanji = dbManager.ShowAll();
+            
+            wordList.getItems().clear();
+            
+            for (KanjiList K : AllKanji) {
+                wordList.getItems().add(K.getKanji() + " : " + K.getMeaning());
+            }
+            
+            if(wordList.getItems().isEmpty()) {
+                System.out.println("No Kanji Found !!!");
+                root.setCenter(wel);
+                wel.setText("No Kanji Found !!!");
+            }
+            else {
+                root.setCenter(wordList);
+            }
         });
         
         wordList.getSelectionModel().selectedItemProperty().addListener((observe,oldval,newval) -> {

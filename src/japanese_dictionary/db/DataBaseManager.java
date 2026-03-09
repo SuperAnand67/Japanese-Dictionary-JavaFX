@@ -188,8 +188,34 @@ public class DataBaseManager {
             e.printStackTrace();
             return false;
             
-        }
+        } 
+    }
+    
+    public List<KanjiList> ShowAll() { 
         
+        List<KanjiList> All = new ArrayList<>();
+        
+        String sqlQuery5 = "SELECT * FROM kanji_list;";
+        
+        try {
+            PreparedStatement pst6 = con.prepareStatement(sqlQuery5);
+            
+            ResultSet kanji = pst6.executeQuery();
+            
+            while(kanji.next()) {
+                KanjiList AllList= new KanjiList(kanji.getString("kanji"),
+                                               kanji.getString("onyomi"),
+                                              kanji.getString("kunyomi"),
+                                              kanji.getString("meaning"),
+                                              kanji.getInt("strokes"));
+                
+                All.add(AllList);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+             return All;  
     }
     
 }
