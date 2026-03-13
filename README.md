@@ -17,7 +17,7 @@ So I built one.
 ## Features
 -  Supports searching for the specific kanji.
 - ​ Can also search using the English meaning.
--  Can BookMark Favvourite Kanji and View then on Home Screen.
+-  Can BookMark Favourite Kanji and View then on through BookMark Menu.
 -  Lists all kanji with similar meanings in an interactive menu.
 -  Displays onyomi, kunyomi readings and stroke count.
 -  0  % lag because of the use of a local database.
