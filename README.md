@@ -6,8 +6,7 @@ Built by a Japanese learner, for Japanese learners.
 It displays the kanji, its meaning, its onyomi and kunyomi readings, and the number of strokes.
 
 ## Screenshots
-<img width="527" height="454" alt="Screenshot from 2026-02-23 22-06-24" src="https://github.com/user-attachments/assets/b964e15f-3b35-4677-ab26-b53ba57ce671" />
-
+<img width="527" height="454" alt="Image" src="https://github.com/user-attachments/assets/5f544450-07bc-4c30-84cd-0ef0b5f9ff83" />
 ## Why I Built This
 I am currently learning Japanese and preparing for JLPT N5.
 I needed a fast, offline kanji reference tool that worked on both 
