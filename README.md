@@ -4,7 +4,7 @@
 ​It is a Java-based Japanese kanji dictionary that uses JavaFX for the UI and SQLite for the local database. 
 It displays the kanji, its meaning, its onyomi and kunyomi readings, and the number of strokes.
 
-<img width="527" height="454" alt="Screenshot from 2026-02-23 22-06-24" src="https://github.com/user-attachments/assets/e899e53f-aa08-4929-a491-33157f432b2d" />
+<img width="527" height="454" alt="Screenshot from 2026-02-23 22-06-24" src="https://github.com/user-attachments/assets/b964e15f-3b35-4677-ab26-b53ba57ce671" />
 
 
 ## Features
@@ -24,20 +24,20 @@ It displays the kanji, its meaning, its onyomi and kunyomi readings, and the num
 1. Goto [Releases](https://github.com/SuperAnand67/Japanese-Dictionary-JavaFX/releases) Page and Download the Latest version.
 2. Open your terminal in Downloads folder and run :
 
-```
+```bash
 sudo dpkg -i japanesedictionary_1.0_amd64.deb
 ```
 
 3. If there are any missing dependencies ,run :
 
-```
+```bash
 sudo apt install -f
 ```
 
 ## How to Launch
 To launch the App :
 
-```
+```bash
 japanesedictionary
 ```
 
