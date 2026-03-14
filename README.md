@@ -7,6 +7,7 @@ It displays the kanji, its meaning, its onyomi and kunyomi readings, and the num
 
 ## Screenshots
 <img width="527" height="454" alt="Image" src="https://github.com/user-attachments/assets/5f544450-07bc-4c30-84cd-0ef0b5f9ff83" />
+
 ## Why I Built This
 I am currently learning Japanese and preparing for JLPT N5.
 I needed a fast, offline kanji reference tool that worked on both 
