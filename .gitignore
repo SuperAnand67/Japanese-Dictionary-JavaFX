@@ -5,4 +5,5 @@
 /test/
 /output/
 *.deb
+*.msi
 kanji_dic.sqbpro
