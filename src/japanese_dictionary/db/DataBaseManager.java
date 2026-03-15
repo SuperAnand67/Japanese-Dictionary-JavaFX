@@ -64,14 +64,13 @@ public class DataBaseManager {
         
         String sqlQuery = "SELECT * FROM kanji_list WHERE kanji = ? OR meaning LIKE ?;";
         
-        try {
-            PreparedStatement pst = con.prepareStatement(sqlQuery);
-                    
+        try(PreparedStatement pst = con.prepareStatement(sqlQuery);) {
+      
             pst.setString(1, searchTerm);
             pst.setString(2, "%" + searchTerm + "%");
 
             ResultSet rs1 = pst.executeQuery();
-            
+                        
             while(rs1.next()) {
                  //String k1 = rs1.getString("kanji");
                  //String m1 = rs1.getString("meaning");
@@ -101,8 +100,8 @@ public class DataBaseManager {
         
         String SqlQuery2 = "SELECT * FROM kanji_list WHERE kanji = ?;";
                                 
-         try {
-            PreparedStatement pst2 = con.prepareStatement(SqlQuery2);
+         try(PreparedStatement pst2 = con.prepareStatement(SqlQuery2);) {
+             
             pst2.setString(1, kanjiS);
 
             ResultSet rs = pst2.executeQuery();
@@ -125,9 +124,8 @@ public class DataBaseManager {
     public void bookmarked(int bm,String kanji){
         String sqlQuery3 = "UPDATE kanji_list SET is_bookmarked = ? WHERE kanji = ?;";
         
-        try {
-            PreparedStatement pst3 = con.prepareStatement(sqlQuery3);
-            
+        try(PreparedStatement pst3 = con.prepareStatement(sqlQuery3);) {
+
             pst3.setString(1, String.valueOf(bm));
             pst3.setString(2, kanji);
             
@@ -146,8 +144,7 @@ public class DataBaseManager {
         
         String sqlQuery4 = "SELECT * FROM kanji_list WHERE is_bookmarked = 1;";
         
-        try {
-            PreparedStatement pst4 = con.prepareStatement(sqlQuery4);
+        try(PreparedStatement pst4 = con.prepareStatement(sqlQuery4);) {
             
             ResultSet bmks = pst4.executeQuery();
             
@@ -171,12 +168,11 @@ public class DataBaseManager {
         return bmkList;
     }
     
-    public boolean BmkBtn(String k) {
+    public boolean bmkBtn(String k) {
         
         String sqlQuery5 = "SELECT * FROM kanji_list WHERE kanji = ?;";
         
-        try {
-            PreparedStatement pst5 = con.prepareStatement(sqlQuery5);
+        try(PreparedStatement pst5 = con.prepareStatement(sqlQuery5);) {
             
             pst5.setString(1, k);
             
@@ -191,14 +187,13 @@ public class DataBaseManager {
         } 
     }
     
-    public List<KanjiList> ShowAll() { 
+    public List<KanjiList> showAll() { 
         
         List<KanjiList> All = new ArrayList<>();
         
         String sqlQuery5 = "SELECT * FROM kanji_list;";
         
-        try {
-            PreparedStatement pst6 = con.prepareStatement(sqlQuery5);
+        try(PreparedStatement pst6 = con.prepareStatement(sqlQuery5);) {
             
             ResultSet kanji = pst6.executeQuery();
             
@@ -216,6 +211,27 @@ public class DataBaseManager {
             e.printStackTrace();
         }
              return All;  
+    }
+    
+    public void addKanji(String kanji,String meaning,String onyomi,String kunyomi,int strokes) {
+        
+        String sqlQuery6 = "INSERT INTO kanji_list(kanji,meaning,onyomi,kunyomi,strokes) VALUES (?,?,?,?,?);";
+        
+        try(PreparedStatement pst7 = con.prepareStatement(sqlQuery6);) {
+            
+            pst7.setString(1, kanji);
+            pst7.setString(2, meaning);
+            pst7.setString(3, onyomi);
+            pst7.setString(4, kunyomi);
+            pst7.setInt(5, strokes);
+            
+            pst7.executeUpdate();
+            
+            System.out.println("Kanji " + kanji +" Added Successfully");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     
 }

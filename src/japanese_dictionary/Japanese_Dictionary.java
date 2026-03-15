@@ -19,7 +19,7 @@ public class Japanese_Dictionary extends Application {
             DictionaryUI myUI = new DictionaryUI();
             
             Scene sc = new Scene(myUI.BuildUI(),600,500);
-        
+            
             primaryStage.setTitle("Japanese Dictionary");
             primaryStage.setScene(sc);
             primaryStage.show();

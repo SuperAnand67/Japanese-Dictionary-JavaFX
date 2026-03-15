@@ -8,7 +8,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 /**
  *
@@ -16,12 +15,15 @@ import javafx.scene.text.FontWeight;
  **/
 public class DictionaryUI{
     
+    public static final Font JPMedium = Font.loadFont(DictionaryUI.class.getResourceAsStream("/resources/fonts/NotoSansJP-Medium.ttf"),15);
+    public static final Font JPBold = Font.loadFont(DictionaryUI.class.getResourceAsStream("/resources/fonts/NotoSansJP-Bold.ttf"),20);
+    
     public BorderPane BuildUI() {
         
         DataBaseManager dbManager = new DataBaseManager();
         
-        String font1 = "Noto Sans CJK JP";
-        
+        //String font1 = "Noto Sans CJK JP";
+                
         BorderPane root = new BorderPane();
         HBox search = new HBox(10);
         VBox kanji = new VBox(15);
@@ -49,14 +51,14 @@ public class DictionaryUI{
         //★
                         
         Label ListKanji = new Label("男");
-        ListKanji.setFont(Font.font(font1,FontWeight.BOLD,50));
+        ListKanji.setFont(Font.font(JPBold.getName(),50));
         Label ListMean = new Label("Male");
-        ListMean.setFont(Font.font(font1,FontWeight.MEDIUM,20));
+        ListMean.setFont(Font.font(JPMedium.getName(),20));
         
         list.setAlignment(Pos.CENTER);
         
         Label wel = new Label("Search for a Kanji to Begin !");
-        wel.setFont(Font.font(font1,FontWeight.BOLD,25));
+        wel.setFont(Font.font(JPBold.getName(),25));
         welcome.setAlignment(Pos.CENTER);
         
         welcome.getChildren().addAll(wel,BMK);
@@ -72,27 +74,26 @@ public class DictionaryUI{
         
         // Headers
         Label mean = new Label("Tree / Wood");
-        mean.setFont(Font.font(font1, FontWeight.MEDIUM, 18));
+        mean.setFont(Font.font(JPMedium.getName(), 18));
         
         Label on = new Label("Onyomi: ");
-        on.setFont(Font.font(font1,FontWeight.BOLD,15));
+        on.setFont(Font.font(JPBold.getName(),15));
         
         Label kun = new Label("Kunyomi: ");
-        kun.setFont(Font.font(font1,FontWeight.BOLD,15));
+        kun.setFont(Font.font(JPBold.getName(),15));
         
         Label st = new Label("Strokes: ");
-        st.setFont(Font.font(font1,FontWeight.BOLD,15));
+        st.setFont(Font.font(JPBold.getName(),15));
         
         //Meanings Column result
         Label onm = new Label("Text");
-        onm.setFont(Font.font(font1,FontWeight.MEDIUM,15));
+        onm.setFont(Font.font(JPMedium.getName(),15));
         
         Label kunm = new Label("Text");
-        kunm.setFont(Font.font(font1,FontWeight.MEDIUM,15));
+        kunm.setFont(Font.font(JPMedium.getName(),15));
         
         Label sto = new Label("Text");
-        sto.setFont(Font.font(font1,FontWeight.MEDIUM,15));
-        
+        sto.setFont(Font.font(JPMedium.getName(),15));
                 
         ListView<String> wordList = new ListView<>();
                 
@@ -100,105 +101,15 @@ public class DictionaryUI{
         
         searchbtn.setDefaultButton(true);
         
-        searchbtn.setOnAction(event -> {
-            
-            String word = s.getText();
-                       
-            if(!word.isEmpty()) {
-                System.out.println("User is Searching : " + word);
-                
-                   wordList.getItems().clear();
-                    
-                    List<KanjiList> searchResults = dbManager.searchDB(word);
-                    
-                    for(KanjiList words : searchResults) {
-                                              
-                        wordList.getItems().add(words.getKanji() + " : " + words.getMeaning());
-                    }
-                    
-                    if(wordList.getItems().isEmpty()) {
-                        System.out.println("Not in our Dictionary !!!!");
-                        root.setCenter(wel);
-                        wel.setText("Not in our Dictionary !!!!");
-                    }
-                    
-                    else{
-                        root.setCenter(wordList);
-                     }                                   
-            }
-            else {
-                System.out.println("Please Enter a word to search!");
-                root.setCenter(wel);
-                wel.setText("Please Enter a word to search!");
-            } 
-        });
+        searchbtn.setOnAction(event -> { searchKanjiBar(s, wordList, dbManager, root, wel); });
         
-        bookmarked.setOnAction((event) -> {
-            
-            String kan = k.getText();
-            
-            if("☆".equals(bookmarked.getText())) {
-                bookmarked.setText("★");
-                
-                System.out.println("Bookmarked : " + kan);
-                
-                dbManager.bookmarked(1, kan);
-            }
-            else {
-                bookmarked.setText("☆");
-                               
-                System.out.println("UnBookmarked : " + kan);
-                
-                dbManager.bookmarked(0, kan);
-            }   
-        });
+        bookmarked.setOnAction((event) -> { bookmarkedKanji(k, bookmarked, dbManager); });
         
-        bookmarks.setOnAction((event) -> {
-           
-            List<KanjiList> BmkLst = dbManager.bookmarks();
-            
-            wordList.getItems().clear();
-            
-            for(KanjiList words : BmkLst) {
-                                              
-                wordList.getItems().add(words.getKanji() + " : " + words.getMeaning());
-            }
-            
-            if(wordList.getItems().isEmpty()) {
-                System.out.println("No BookMarks Found !!!");
-                root.setCenter(wel);
-                wel.setText("No BookMarks Found !!!");
-            }
-            else {
-                root.setCenter(wordList);
-            }
-        });
+        bookmarks.setOnAction((event) -> { bookmarksList(dbManager, wordList, root, wel); });
         
-        home.setOnAction((event) -> {
-            
-            s.clear();
-            wel.setText("Search for a Kanji to Begin !");
-            root.setCenter(welcome);
-        });
+        home.setOnAction((event) -> { homeButton(s, wel, root, welcome); });
         
-        showAll.setOnAction((event) -> {
-            List<KanjiList> AllKanji = dbManager.ShowAll();
-            
-            wordList.getItems().clear();
-            
-            for (KanjiList K : AllKanji) {
-                wordList.getItems().add(K.getKanji() + " : " + K.getMeaning());
-            }
-            
-            if(wordList.getItems().isEmpty()) {
-                System.out.println("No Kanji Found !!!");
-                root.setCenter(wel);
-                wel.setText("No Kanji Found !!!");
-            }
-            else {
-                root.setCenter(wordList);
-            }
-        });
+        showAll.setOnAction((event) -> { showAllButton(dbManager, wordList, root, wel); });
         
         wordList.getSelectionModel().selectedItemProperty().addListener((observe,oldval,newval) -> {
                             if (newval != null) {
@@ -212,7 +123,7 @@ public class DictionaryUI{
                                 mean.setText(detail.getMeaning());
                                 sto.setText(String.valueOf(detail.getStrokes()));
                                 
-                                if(dbManager.BmkBtn(kanjiS)) {
+                                if(dbManager.bmkBtn(kanjiS)) {
                                     bookmarked.setText("★");
                                 }
                                 else {
@@ -239,6 +150,100 @@ public class DictionaryUI{
         
         return root;    
     }
-    
-    
+
+    private static void showAllButton(DataBaseManager dbManager, ListView<String> wordList, BorderPane root, Label wel) {
+        List<KanjiList> AllKanji = dbManager.showAll();
+        
+        wordList.getItems().clear();
+        
+        for (KanjiList K : AllKanji) {
+            wordList.getItems().add(K.getKanji() + " : " + K.getMeaning());
+        }
+        
+        if(wordList.getItems().isEmpty()) {
+            System.out.println("No Kanji Found !!!");
+            root.setCenter(wel);
+            wel.setText("No Kanji Found !!!");
+        }
+        else {
+            root.setCenter(wordList);
+        }
+    }
+
+    private static void homeButton(TextField s, Label wel, BorderPane root, VBox welcome) {
+        s.clear();
+        wel.setText("Search for a Kanji to Begin !");
+        root.setCenter(welcome);
+    }
+
+    private static void bookmarksList(DataBaseManager dbManager, ListView<String> wordList, BorderPane root, Label wel) {
+        List<KanjiList> BmkLst = dbManager.bookmarks();
+        
+        wordList.getItems().clear();
+        
+        for(KanjiList words : BmkLst) {
+            
+            wordList.getItems().add(words.getKanji() + " : " + words.getMeaning());
+        }
+        
+        if(wordList.getItems().isEmpty()) {
+            System.out.println("No BookMarks Found !!!");
+            root.setCenter(wel);
+            wel.setText("No BookMarks Found !!!");
+        }
+        else {
+            root.setCenter(wordList);
+        }
+    }
+
+    private static void bookmarkedKanji(Label k, Button bookmarked, DataBaseManager dbManager) {
+        String kan = k.getText();
+        
+        if("☆".equals(bookmarked.getText())) {
+            bookmarked.setText("★");
+            
+            System.out.println("Bookmarked : " + kan);
+            
+            dbManager.bookmarked(1, kan);
+        }
+        else {
+            bookmarked.setText("☆");
+            
+            System.out.println("UnBookmarked : " + kan);
+            
+            dbManager.bookmarked(0, kan);
+        }
+    }
+
+    private static void searchKanjiBar(TextField s, ListView<String> wordList, DataBaseManager dbManager, BorderPane root, Label wel) {
+        String word = s.getText();
+        
+        if(!word.isEmpty()) {
+            System.out.println("User is Searching : " + word);
+            
+            wordList.getItems().clear();
+            
+            List<KanjiList> searchResults = dbManager.searchDB(word);
+            
+            for(KanjiList words : searchResults) {
+                
+                wordList.getItems().add(words.getKanji() + " : " + words.getMeaning());
+            }
+            
+            if(wordList.getItems().isEmpty()) {
+                System.out.println("Not in our Dictionary !!!!");
+                root.setCenter(wel);
+                wel.setText("Not in our Dictionary !!!!");
+            }
+            
+            else{
+                root.setCenter(wordList);
+            }
+        }
+        else {
+            System.out.println("Please Enter a word to search!");
+            root.setCenter(wel);
+            wel.setText("Please Enter a word to search!");
+        }
+    }    
 }
