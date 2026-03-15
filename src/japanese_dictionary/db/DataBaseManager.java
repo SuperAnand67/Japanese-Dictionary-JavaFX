@@ -227,7 +227,7 @@ public class DataBaseManager {
             
             pst7.executeUpdate();
             
-            System.out.println("Kanji " + kanji +" Added Successfully");
+            System.out.println(kanji +" Added Successfully");
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -235,7 +235,20 @@ public class DataBaseManager {
     }
     
     public void deleteKanji(String kanji) {
+        String sqlQuery7 = "DELETE FROM kanji_list  WHERE kanji = ?;";
         
+        try(PreparedStatement pst8 = con.prepareStatement(sqlQuery7);) {
+            
+            pst8.setString(1, kanji);
+            
+            pst8.executeUpdate();
+            
+            System.out.println(kanji +" Removed Successfully");
+            
+        }
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
     
 }

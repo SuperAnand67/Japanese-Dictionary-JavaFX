@@ -36,6 +36,8 @@ public class DictionaryUI{
         details.setHgap(10);
         details.setVgap(15);
         
+        search.setPadding(new Insets(5,5,15,5));
+        
         root.setCenter(welcome);
         root.setTop(search);
         root.setPadding(new Insets(15));
@@ -47,6 +49,7 @@ public class DictionaryUI{
         Button home = new Button("🏠 Home");
         Button showAll = new Button("Show All");
         Button addKanji = new Button("➕ Add Kanji");
+        Button delkanji = new Button("❌");
         
         BMK.getChildren().addAll(addKanji,showAll,bookmarks);
         BMK.setAlignment(Pos.CENTER);
@@ -71,7 +74,7 @@ public class DictionaryUI{
         
         search.getChildren().addAll(s,searchbtn);
         
-        Label k = new Label("木");
+        Label k = new Label("");
         k.setFont(new Font(100));
         
         // Headers
@@ -97,7 +100,7 @@ public class DictionaryUI{
         Label sto = new Label("Text");
         sto.setFont(Font.font(JPMedium.getName(),15));
                 
-        ListView<String> wordList = new ListView<>();
+        ListView<KanjiList> wordList = new ListView<>();
                 
         wordList.setStyle("-fx-font-size:18px;");
         
@@ -113,36 +116,77 @@ public class DictionaryUI{
         
         showAll.setOnAction((event) -> { showAllButton(dbManager, wordList, root, wel); });
         
-        addKanji.setOnAction((event) -> {
-                
+        addKanji.setOnAction((event) -> {   
             PopupUI addKanjiNew = new PopupUI(dbManager);
-            
             addKanjiNew.showPopup();
+            
+        });
         
-        } );
+        delkanji.setOnAction((event) -> {
+            String kanjiDel = k.getText();
+            dbManager.deleteKanji(kanjiDel);
+            homeButton(s, wel, root, welcome);
+        
+        });
         
         wordList.getSelectionModel().selectedItemProperty().addListener((observe,oldval,newval) -> {
-                            if (newval != null) {
-                                String kanjiS = newval.split(":")[0].trim();
+             if (newval != null) {
+                String kanjiS = newval.getKanji();
                                 
-                                KanjiList detail = dbManager.getKanji(kanjiS);
+                 KanjiList detail = dbManager.getKanji(kanjiS);
                                                                   
-                                k.setText(detail.getKanji());
-                                onm.setText(detail.getOnyomi());
-                                kunm.setText(detail.getKunyomi());
-                                mean.setText(detail.getMeaning());
-                                sto.setText(String.valueOf(detail.getStrokes()));
+                 k.setText(detail.getKanji());
+                 onm.setText(detail.getOnyomi());
+                 kunm.setText(detail.getKunyomi());
+                 mean.setText(detail.getMeaning());
+                 sto.setText(String.valueOf(detail.getStrokes()));
                                 
-                                if(dbManager.bmkBtn(kanjiS)) {
-                                    bookmarked.setText("★");
-                                }
-                                else {
-                                    bookmarked.setText("☆");
-                                }
+                 if(dbManager.bmkBtn(kanjiS)) {
+                     bookmarked.setText("★");
+                 }
+                 else {
+                    bookmarked.setText("☆");
+                 }
                                 
-                                root.setCenter(kanji);                               
-                            }
-                        });
+                 root.setCenter(kanji);                               
+             }
+        });
+        
+        wordList.setCellFactory((param) -> new ListCell<KanjiList>() {
+            private HBox rowLayout = new HBox(10);
+            
+            private Label kanjiL = new Label();
+            
+            private final Label meaningL = new Label();
+
+            {
+                kanjiL.setFont(Font.font(JPBold.getName(),22));
+                
+                meaningL.setFont(Font.font(JPMedium.getName(),16));
+                
+                rowLayout.setAlignment(Pos.CENTER_LEFT);
+                
+                rowLayout.getChildren().addAll(kanjiL,meaningL);
+            }
+            
+            @Override
+            protected void updateItem(KanjiList obj,boolean empty) {
+                super.updateItem(obj, empty);
+                
+                if(empty || obj == null) {
+                    setText(null);
+                    setGraphic(null);
+                }
+                else {
+                    kanjiL.setText(obj.getKanji());
+                    meaningL.setText(" : "+ obj.getMeaning());
+                                        
+                    setText(null);
+                    setGraphic(rowLayout);
+                }
+            }
+                                    
+        });
         
         details.add(on,3,0);
         details.add(onm,4,0);
@@ -150,8 +194,10 @@ public class DictionaryUI{
         details.add(kunm,4,1);
         details.add(st,3,2);
         details.add(sto,4,2);
-        details.add(bookmarked,33,1);
+        details.add(bookmarked,28,0);
+        details.add(delkanji,28,2);
         details.add(home,15,6);
+        
         
         HBox.setHgrow(s, Priority.ALWAYS);
         
@@ -161,14 +207,17 @@ public class DictionaryUI{
         return root;    
     }
 
-    private static void showAllButton(DataBaseManager dbManager, ListView<String> wordList, BorderPane root, Label wel) {
+    private static void showAllButton(DataBaseManager dbManager, ListView<KanjiList> wordList, BorderPane root, Label wel) {
         List<KanjiList> AllKanji = dbManager.showAll();
         
         wordList.getItems().clear();
         
-        for (KanjiList K : AllKanji) {
+/*        for (KanjiList K : AllKanji) {
             wordList.getItems().add(K.getKanji() + " : " + K.getMeaning());
-        }
+       }
+*/
+
+        wordList.getItems().addAll(AllKanji);
         
         if(wordList.getItems().isEmpty()) {
             System.out.println("No Kanji Found !!!");
@@ -186,15 +235,18 @@ public class DictionaryUI{
         root.setCenter(welcome);
     }
 
-    private static void bookmarksList(DataBaseManager dbManager, ListView<String> wordList, BorderPane root, Label wel) {
+    private static void bookmarksList(DataBaseManager dbManager, ListView<KanjiList> wordList, BorderPane root, Label wel) {
         List<KanjiList> BmkLst = dbManager.bookmarks();
         
         wordList.getItems().clear();
         
-        for(KanjiList words : BmkLst) {
+/*        for(KanjiList words : BmkLst) {
             
             wordList.getItems().add(words.getKanji() + " : " + words.getMeaning());
         }
+*/
+
+        wordList.getItems().addAll(BmkLst);
         
         if(wordList.getItems().isEmpty()) {
             System.out.println("No BookMarks Found !!!");
@@ -225,7 +277,7 @@ public class DictionaryUI{
         }
     }
 
-    private static void searchKanjiBar(TextField s, ListView<String> wordList, DataBaseManager dbManager, BorderPane root, Label wel) {
+    private static void searchKanjiBar(TextField s, ListView<KanjiList> wordList, DataBaseManager dbManager, BorderPane root, Label wel) {
         String word = s.getText();
         
         if(!word.isEmpty()) {
@@ -235,10 +287,13 @@ public class DictionaryUI{
             
             List<KanjiList> searchResults = dbManager.searchDB(word);
             
-            for(KanjiList words : searchResults) {
+/*            for(KanjiList words : searchResults) {
                 
                 wordList.getItems().add(words.getKanji() + " : " + words.getMeaning());
             }
+*/
+
+            wordList.getItems().addAll(searchResults);
             
             if(wordList.getItems().isEmpty()) {
                 System.out.println("Not in our Dictionary !!!!");

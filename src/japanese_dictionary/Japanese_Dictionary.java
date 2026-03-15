@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import static javafx.application.Application.launch;
 import javafx.stage.Stage;
 import japanese_dictionary.ui.DictionaryUI;
+import javafx.scene.image.Image;
 
 public class Japanese_Dictionary extends Application {
        
@@ -22,6 +23,9 @@ public class Japanese_Dictionary extends Application {
             
             primaryStage.setTitle("Japanese Dictionary");
             primaryStage.setScene(sc);
+            
+            primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/app-icon.png")));
+            
             primaryStage.show();
             
         }
