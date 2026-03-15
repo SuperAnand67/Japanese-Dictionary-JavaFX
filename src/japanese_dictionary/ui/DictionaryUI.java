@@ -17,6 +17,7 @@ public class DictionaryUI{
     
     public static final Font JPMedium = Font.loadFont(DictionaryUI.class.getResourceAsStream("/resources/fonts/NotoSansJP-Medium.ttf"),15);
     public static final Font JPBold = Font.loadFont(DictionaryUI.class.getResourceAsStream("/resources/fonts/NotoSansJP-Bold.ttf"),20);
+    public static final Font JPRegular = Font.loadFont(DictionaryUI.class.getResourceAsStream("/resources/fonts/NotoSansJP-Regular.ttf"),15);
     
     public BorderPane BuildUI() {
         
@@ -45,8 +46,9 @@ public class DictionaryUI{
         Button bookmarks = new Button("Bookmarks ★");
         Button home = new Button("🏠 Home");
         Button showAll = new Button("Show All");
+        Button addKanji = new Button("➕ Add Kanji");
         
-        BMK.getChildren().addAll(showAll,bookmarks);
+        BMK.getChildren().addAll(addKanji,showAll,bookmarks);
         BMK.setAlignment(Pos.CENTER);
         //★
                         
@@ -110,6 +112,14 @@ public class DictionaryUI{
         home.setOnAction((event) -> { homeButton(s, wel, root, welcome); });
         
         showAll.setOnAction((event) -> { showAllButton(dbManager, wordList, root, wel); });
+        
+        addKanji.setOnAction((event) -> {
+                
+            PopupUI addKanjiNew = new PopupUI(dbManager);
+            
+            addKanjiNew.showPopup();
+        
+        } );
         
         wordList.getSelectionModel().selectedItemProperty().addListener((observe,oldval,newval) -> {
                             if (newval != null) {

@@ -234,4 +234,8 @@ public class DataBaseManager {
         }
     }
     
+    public void deleteKanji(String kanji) {
+        
+    }
+    
 }
