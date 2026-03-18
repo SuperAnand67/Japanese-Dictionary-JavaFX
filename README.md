@@ -7,7 +7,9 @@ It displays the kanji, its meaning, its onyomi and kunyomi readings, and the num
 
 ## Screenshots
 <img width="617" height="545" alt="japanese-dictionary1" src="https://github.com/user-attachments/assets/687d8353-7169-4db7-9cc7-29fccfaa4e52" />
+
 <img width="617" height="545" alt="japanese-dictionary4" src="https://github.com/user-attachments/assets/5d0d738b-12c1-4b9f-8100-650bf97d081c" />
+
 <img width="617" height="545" alt="japanese-dictionary2" src="https://github.com/user-attachments/assets/08fd19fe-b019-4d4e-b48c-e87336e21123" />
 
 ## Why I Built This
