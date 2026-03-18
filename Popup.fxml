@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -14,15 +14,15 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="104.0" prefWidth="600.0">
-         <children>
-            <Label contentDisplay="CENTER" layoutX="194.0" layoutY="34.0" text="Add New Kanji" textAlignment="CENTER">
+      <BorderPane prefHeight="108.0" prefWidth="600.0">
+         <center>
+            <Label contentDisplay="CENTER" text="Add New Kanji" textAlignment="CENTER" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Noto Sans Bold" size="24.0" />
                </font>
             </Label>
-         </children>
-      </AnchorPane>
+         </center>
+      </BorderPane>
       <GridPane prefHeight="179.0" prefWidth="600.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0203917796094" minWidth="10.0" prefWidth="151.30611658950323" />

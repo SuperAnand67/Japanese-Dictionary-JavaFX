@@ -62,12 +62,13 @@ public class DataBaseManager {
         
         List<KanjiList> resultList = new ArrayList<>();
         
-        String sqlQuery = "SELECT * FROM kanji_list WHERE kanji = ? OR meaning LIKE ?;";
+        String sqlQuery = "SELECT * FROM kanji_list WHERE kanji = ? OR meaning LIKE ? OR strokes = ?;";
         
         try(PreparedStatement pst = con.prepareStatement(sqlQuery);) {
       
             pst.setString(1, searchTerm);
             pst.setString(2, "%" + searchTerm + "%");
+            pst.setString(3,searchTerm);
 
             ResultSet rs1 = pst.executeQuery();
                         
