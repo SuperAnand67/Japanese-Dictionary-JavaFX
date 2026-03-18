@@ -6,7 +6,9 @@ Built by a Japanese learner, for Japanese learners.
 It displays the kanji, its meaning, its onyomi and kunyomi readings, and the number of strokes.
 
 ## Screenshots
-<img width="527" height="454" alt="Image" src="https://github.com/user-attachments/assets/5f544450-07bc-4c30-84cd-0ef0b5f9ff83" />
+<img width="617" height="545" alt="japanese-dictionary1" src="https://github.com/user-attachments/assets/687d8353-7169-4db7-9cc7-29fccfaa4e52" />
+<img width="617" height="545" alt="japanese-dictionary4" src="https://github.com/user-attachments/assets/5d0d738b-12c1-4b9f-8100-650bf97d081c" />
+<img width="617" height="545" alt="japanese-dictionary2" src="https://github.com/user-attachments/assets/08fd19fe-b019-4d4e-b48c-e87336e21123" />
 
 ## Why I Built This
 I am currently learning Japanese and preparing for JLPT N5.
@@ -58,18 +60,25 @@ japanesedictionary
 3. Follow installation wizard.
 4. Launch from Start Menu.
 
+### Building from Source
+If you want to run or modify the code in your own IDE (like NetBeans):
+
+1. **Prerequisite:** You must use the **BellSoft Liberica JDK (Full version)** (e.g., version 21). The "Full" version includes the necessary JavaFX modules bundled directly into the JDK.
+2. Clone the repository:
+   ```bash
+   git clone [https://github.com/SuperAnand67/Japanese-Dictionary-JavaFX.git](https://github.com/SuperAnand67/Japanese-Dictionary-JavaFX.git
+   ```
+
 ## Note on Database
 ~~Make sure that the Database File (kanjiDict.db) in the /opt/japanesedictionary/lib/app/ Folder.~~
 ~~The Installer automatically places it there and set the neccessary Read/Write Permissions.~~
 Now the App automatically places the Database File (kanjiDict.db) directly in the User Folder during Installation.
 
 ## Planned Features
-- Search by stroke count
 - Search by radical (部首)
 - Furigana display
-- Add New Kanji
-- Edit and Delete Existing Kanji
 - Dark mode
+- Many More Coming Soon !!!
 
 ## License
 MIT License
