@@ -6,4 +6,5 @@
 /output/
 *.deb
 *.msi
-kanji_dic.sqbpro
+*.sqbpro
+*.gpj
