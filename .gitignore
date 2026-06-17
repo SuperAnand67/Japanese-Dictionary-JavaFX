@@ -1,8 +1,4 @@
-/build/
-/dist/
-/nbproject/private/
-/nbproject/
-/test/
+/target/
 /output/
 *.deb
 *.msi
