@@ -5,6 +5,7 @@ package japanese_dictionary;
  * @author superanand67
  */
 
+import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import static javafx.application.Application.launch;
@@ -16,6 +17,8 @@ public class JapaneseDictionary extends Application {
        
         @Override
         public void start(Stage primaryStage) throws Exception {
+            
+            Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
             
             DictionaryUI myUI = new DictionaryUI();
             

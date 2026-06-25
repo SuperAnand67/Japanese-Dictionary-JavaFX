@@ -15,9 +15,9 @@ import javafx.stage.Stage;
  */
 public class PopupUI {
     
-    public static final Font JPMedium = Font.loadFont(DictionaryUI.class.getResourceAsStream("/resources/fonts/NotoSansJP-Medium.ttf"),15);
-    public static final Font JPBold = Font.loadFont(DictionaryUI.class.getResourceAsStream("/resources/fonts/NotoSansJP-Bold.ttf"),20);
-    public static final Font JPRegular = Font.loadFont(DictionaryUI.class.getResourceAsStream("/resources/fonts/NotoSansJP-Regular.ttf"),15);
+    public static final Font JPMedium = Font.loadFont(DictionaryUI.class.getResourceAsStream("/fonts/NotoSansJP-Medium.ttf"),15);
+    public static final Font JPBold = Font.loadFont(DictionaryUI.class.getResourceAsStream("/fonts/NotoSansJP-Bold.ttf"),20);
+    public static final Font JPRegular = Font.loadFont(DictionaryUI.class.getResourceAsStream("/fonts/NotoSansJP-Regular.ttf"),15);
 
     private final DataBaseManager dataBaseManager;
     
