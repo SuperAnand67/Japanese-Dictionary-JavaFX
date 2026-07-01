@@ -5,7 +5,7 @@ package japanese_dictionary;
  * @author superanand67
  */
 
-//import atlantafx.base.theme.PrimerLight;
+import atlantafx.base.theme.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import static javafx.application.Application.launch;
@@ -18,14 +18,14 @@ public class JapaneseDictionary extends Application {
         @Override
         public void start(Stage primaryStage) throws Exception {
             
-            Application.setUserAgentStylesheet("/themes/dracula.css");
+            //Application.setUserAgentStylesheet(new CupertinoLight().getUserAgentStylesheet());
             
             DictionaryUI myUI = new DictionaryUI();
             
-            Scene sc = new Scene(myUI.BuildUI(),600,500);
+            Scene scene = new Scene(myUI.BuildUI(),600,500);
             
             primaryStage.setTitle("Japanese Dictionary");
-            primaryStage.setScene(sc);
+            primaryStage.setScene(scene);
             
             primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/app-icon.png")));
             

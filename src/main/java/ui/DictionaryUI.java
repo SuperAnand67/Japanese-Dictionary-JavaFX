@@ -9,6 +9,10 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import javafx.application.Application;
+import atlantafx.base.theme.*;
+import japanese_dictionary.JapaneseDictionary;
+import java.util.prefs.Preferences;
 
 /**
  *
@@ -24,13 +28,21 @@ public class DictionaryUI{
     
     public static final Font JPRegular = Font.loadFont(DictionaryUI.class.
             getResourceAsStream("/fonts/NotoSansJP-Regular.ttf"),15);
+        
+    public Theme currentTheme = new CupertinoLight();
     
+    private final Preferences prefs = Preferences.userNodeForPackage(JapaneseDictionary.class);
+        
     public BorderPane BuildUI() {
         
         DataBaseManager dbManager = new DataBaseManager();
         
         //String font1 = "Noto Sans CJK JP";
-                
+        
+        Application.setUserAgentStylesheet(currentTheme.getUserAgentStylesheet());
+        
+        prefs.putBoolean("DarkMode", false);
+        
         BorderPane root = new BorderPane();
         HBox search = new HBox(10);
         VBox kanji = new VBox(15);
@@ -56,6 +68,7 @@ public class DictionaryUI{
         Button showAll = new Button("Show All");
         Button addKanji = new Button("➕ Add Kanji");
         Button delkanji = new Button(" ❌ ");
+        Button theme_switch = new Button("☀️");
         
         Tooltip homeTip = new Tooltip("Return to Home Screen");
         Tooltip delTip = new Tooltip("Delete from Dictionary");
@@ -71,7 +84,7 @@ public class DictionaryUI{
         
         homeShow(false, home);
         
-        BMK.getChildren().addAll(addKanji,showAll,bookmarks);
+        BMK.getChildren().addAll(addKanji,showAll,bookmarks,theme_switch);
         BMK.setAlignment(Pos.CENTER);
         //★
                         
@@ -160,6 +173,11 @@ public class DictionaryUI{
             dbManager.deleteKanji(kanjiDel);
             homeButton(s, wel, root, welcome);
         
+        });
+        
+        theme_switch.setOnAction((event) -> {
+            currentTheme = theme_switcher(currentTheme,theme_switch);
+            Application.setUserAgentStylesheet(currentTheme.getUserAgentStylesheet());
         });
         
         wordList.getSelectionModel().selectedItemProperty().
@@ -344,5 +362,15 @@ public class DictionaryUI{
             root.setCenter(wel);
             wel.setText("Please Enter a word to search!");
         }
-    }    
+    }
+
+    private static Theme theme_switcher(Theme theme, Button theme_switch){
+        if (theme.isDarkMode()) {
+            theme_switch.setText("☀️");
+            return new CupertinoLight();
+        }
+        
+        theme_switch.setText("🌙");
+        return new Dracula();
+    }
 }

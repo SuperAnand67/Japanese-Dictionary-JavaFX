@@ -15,9 +15,12 @@ import javafx.stage.Stage;
  */
 public class PopupUI {
     
-    public static final Font JPMedium = Font.loadFont(DictionaryUI.class.getResourceAsStream("/fonts/NotoSansJP-Medium.ttf"),15);
-    public static final Font JPBold = Font.loadFont(DictionaryUI.class.getResourceAsStream("/fonts/NotoSansJP-Bold.ttf"),20);
-    public static final Font JPRegular = Font.loadFont(DictionaryUI.class.getResourceAsStream("/fonts/NotoSansJP-Regular.ttf"),15);
+    public static final Font JPMedium = Font.loadFont(
+            DictionaryUI.class.getResourceAsStream("/fonts/NotoSansJP-Medium.ttf"),15);
+    public static final Font JPBold = Font.loadFont(
+            DictionaryUI.class.getResourceAsStream("/fonts/NotoSansJP-Bold.ttf"),20);
+    public static final Font JPRegular = Font.loadFont(
+            DictionaryUI.class.getResourceAsStream("/fonts/NotoSansJP-Regular.ttf"),15);
 
     private final DataBaseManager dataBaseManager;
     
@@ -82,7 +85,7 @@ public class PopupUI {
         Button cancelButton = new Button("Cancel");
         
         saveButton.setOnAction((event) -> {
-       try {
+        try {
             String kanjiS = kanjiN.getText();
             String meaningS = meaningN.getText();
             String onYS = onyomiN.getText();
@@ -94,10 +97,10 @@ public class PopupUI {
             popupStage.close();
             
           }
-            catch(NumberFormatException e) {
+          catch(NumberFormatException e) {
                 System.out.println("Please Enter a Valid No. of Strokes !");
                 title.setText("Enter Valid No. of Strokes !");
-            }
+          }
         
         });
         
@@ -111,7 +114,7 @@ public class PopupUI {
         
         root.getChildren().addAll(topPane,mainPane,bottomPane);
         
-        Scene scene = new Scene(root,400,350);
+        Scene scene = new Scene(root,450,400);
         
         popupStage.setScene(scene);
         popupStage.showAndWait();
