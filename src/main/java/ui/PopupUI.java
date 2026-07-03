@@ -15,11 +15,11 @@ import javafx.stage.Stage;
  */
 public class PopupUI {
     
-    public static final Font JPMedium = Font.loadFont(
+    public static final Font JP_MEDIUM = Font.loadFont(
             DictionaryUI.class.getResourceAsStream("/fonts/NotoSansJP-Medium.ttf"),15);
-    public static final Font JPBold = Font.loadFont(
+    public static final Font JP_BOLD = Font.loadFont(
             DictionaryUI.class.getResourceAsStream("/fonts/NotoSansJP-Bold.ttf"),20);
-    public static final Font JPRegular = Font.loadFont(
+    public static final Font JP_REGULAR = Font.loadFont(
             DictionaryUI.class.getResourceAsStream("/fonts/NotoSansJP-Regular.ttf"),15);
 
     private final DataBaseManager dataBaseManager;
@@ -43,41 +43,41 @@ public class PopupUI {
         HBox bottomPane = new HBox(15);
                 
         Label title = new Label("Add New Kanji");
-        title.setFont(Font.font(JPBold.getName(),24));
+        title.setFont(Font.font(JP_BOLD.getName(),24));
         title.setAlignment(Pos.CENTER);
         
         topPane.setCenter(title);
         topPane.setPadding(new Insets(20,0,20,0));
         
-        Label kanji = new Label("Kanji : ");
-        Label meaning = new Label("Meaning : ");
-        Label onyomi = new Label("Onyomi : ");
-        Label kunyomi = new Label("Kunyomi : ");
-        Label strokes = new Label("No.of Strokes : ");
+        Label kanjiLabel = new Label("Kanji : ");
+        Label meaningLabel = new Label("Meaning : ");
+        Label onyomiLabel = new Label("Onyomi : ");
+        Label kunyomiLabel = new Label("Kunyomi : ");
+        Label strokesLabel = new Label("No.of Strokes : ");
         
-        TextField kanjiN = new TextField();
-        TextField meaningN = new TextField();
-        TextField onyomiN = new TextField();
-        TextField kunyomiN = new TextField();
-        TextField strokesN = new TextField();
+        TextField kanji = new TextField();
+        TextField meaning = new TextField();
+        TextField onyomi = new TextField();
+        TextField kunyomi = new TextField();
+        TextField strokes = new TextField();
               
-        mainPane.add(kanji, 0, 0);
-        mainPane.add(meaning, 0, 1);
-        mainPane.add(onyomi, 0, 2);
-        mainPane.add(kunyomi, 0, 3);
-        mainPane.add(strokes, 0, 4);
+        mainPane.add(kanjiLabel, 0, 0);
+        mainPane.add(meaningLabel, 0, 1);
+        mainPane.add(onyomiLabel, 0, 2);
+        mainPane.add(kunyomiLabel, 0, 3);
+        mainPane.add(strokesLabel, 0, 4);
         
-        mainPane.add(kanjiN,1,0);
-        mainPane.add(meaningN,1,1);
-        mainPane.add(onyomiN,1,2);
-        mainPane.add(kunyomiN,1,3);
-        mainPane.add(strokesN,1,4);
+        mainPane.add(kanji,1,0);
+        mainPane.add(meaning,1,1);
+        mainPane.add(onyomi,1,2);
+        mainPane.add(kunyomi,1,3);
+        mainPane.add(strokes,1,4);
         
-        GridPane.setHalignment(kanji, HPos.RIGHT);
-        GridPane.setHalignment(meaning, HPos.RIGHT);
-        GridPane.setHalignment(onyomi, HPos.RIGHT);
-        GridPane.setHalignment(kunyomi, HPos.RIGHT);
-        GridPane.setHalignment(strokes, HPos.RIGHT);
+        GridPane.setHalignment(kanjiLabel, HPos.RIGHT);
+        GridPane.setHalignment(meaningLabel, HPos.RIGHT);
+        GridPane.setHalignment(onyomiLabel, HPos.RIGHT);
+        GridPane.setHalignment(kunyomiLabel, HPos.RIGHT);
+        GridPane.setHalignment(strokesLabel, HPos.RIGHT);
         
         mainPane.setPadding(new Insets(0,15,0,30));
         
@@ -86,13 +86,13 @@ public class PopupUI {
         
         saveButton.setOnAction((event) -> {
         try {
-            String kanjiS = kanjiN.getText();
-            String meaningS = meaningN.getText();
-            String onYS = onyomiN.getText();
-            String kunYS = kunyomiN.getText();
-            int strokesI = Integer.parseInt(strokesN.getText());
+            String kanjiStr = kanji.getText();
+            String meaningStr = meaning.getText();
+            String onyomiStr = onyomi.getText();
+            String kunyomiStr = kunyomi.getText();
+            int noOfStrokes = Integer.parseInt(strokes.getText());
             
-            dataBaseManager.addKanji(kanjiS, meaningS, onYS, kunYS, strokesI);
+            dataBaseManager.addKanji(kanjiStr, meaningStr, onyomiStr, kunyomiStr, noOfStrokes);
             
             popupStage.close();
             
