@@ -84,7 +84,6 @@ Now the App automatically places the Database File (kanjiDict.db) directly in th
 ## Planned Features
 - Search by radical (部首)
 - Furigana display
-- Dark mode
 - Many More Coming Soon !!!
 
 ## License
