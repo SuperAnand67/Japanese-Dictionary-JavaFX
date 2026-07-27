@@ -2,7 +2,7 @@
 
 A modern, offline Japanese Kanji Dictionary built with JavaFX, SQLite, and AtlantaFX.
 
-###✨ Features
+### ✨ Features
 
 - Instant Kanji lookup
 - English meaning search
