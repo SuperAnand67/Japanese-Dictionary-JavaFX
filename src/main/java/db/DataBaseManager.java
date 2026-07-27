@@ -1,11 +1,10 @@
 package japanese_dictionary.db;
 
 import japanese_dictionary.model.KanjiList;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.File;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
@@ -25,7 +24,7 @@ public class DataBaseManager {
     //String url = "jdbc:sqlite:/opt/japanesedictionary/lib/app/kanjiDict.db";
     
     // for local and testing use
-    String urlT = "jdbc:sqlite:kanjiDict.db";
+    //String urlT = "jdbc:sqlite:kanjiDict.db";
     private Connection con;
 
     public DataBaseManager() {
@@ -39,11 +38,9 @@ public class DataBaseManager {
            if (!dbFile.exists()) {
                 System.out.println("Installing Database .....");
             
-                InputStream in = getClass().getResourceAsStream("/japanese_dictionary/kanjiDict.db");
-            
-                Files.copy(in, dbFile.toPath(),StandardCopyOption.REPLACE_EXISTING);
-            
-                in.close();
+               try (InputStream in = getClass().getResourceAsStream("/japanese_dictionary/kanjiDict.db")) {
+                   Files.copy(in, dbFile.toPath(),StandardCopyOption.REPLACE_EXISTING);
+               }
             } 
            
            url = "jdbc:sqlite:" + dbFile.getAbsolutePath();
@@ -51,7 +48,7 @@ public class DataBaseManager {
            con = DriverManager.getConnection(url);
             System.out.println("Successfully Connected to Database !!!!");
         }
-        catch (Exception e) {
+        catch (IOException | SQLException e) {
             System.out.println("Error Connecting DataBase !!!");
             e.printStackTrace();
         } 

@@ -4,4 +4,6 @@
 *.msi
 *.sqbpro
 *.gpj
-/src/japanese_dictionary
+/src/japanese_dictionary_old/
+*.jar
+
