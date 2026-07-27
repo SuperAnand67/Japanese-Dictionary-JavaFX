@@ -79,7 +79,7 @@ If you want to run or modify the code in your own IDE (like NetBeans):
 1. **Prerequisite:** You must use the **BellSoft Liberica JDK (Full version)** (e.g., version 21). The "Full" version includes the necessary JavaFX modules bundled directly into the JDK.
 2. Clone the repository:
 ```bash
-   git clone [https://github.com/SuperAnand67/Japanese-Dictionary-JavaFX.git](https://github.com/SuperAnand67/Japanese-Dictionary-JavaFX.git
+   git clone [https://github.com/SuperAnand67/Japanese-Dictionary-JavaFX.git](https://github.com/SuperAnand67/Japanese-Dictionary-JavaFX.git)
 ```
  3. To Build the Project:
 ```bash
