@@ -1,9 +1,15 @@
-# Japanese Kanji Dictionary
+# Japanese Dictionary (JavaFX)
 
-## Description
-A fast, offline Japanese Kanji Dictionary built with JavaFX and SQLite.
-Built by a Japanese learner, for Japanese learners.
-It displays the kanji, its meaning, its onyomi and kunyomi readings, and the number of strokes.
+A modern, offline Japanese Kanji Dictionary built with JavaFX, SQLite, and AtlantaFX.
+
+###✨ Features
+
+- Instant Kanji lookup
+- English meaning search
+- Bookmark favorite Kanji
+- Dark & Light themes
+- Cross-platform (Windows & Linux)
+- Offline-first
 
 ## Screenshots
 <img width="617" height="545" alt="JapaneseDictionary-1" src="https://github.com/user-attachments/assets/b56f7c78-acde-4efc-93f8-c3b82faa9e7a" />
@@ -23,7 +29,7 @@ I needed a fast, offline kanji reference tool that worked on both
 Windows and Linux without internet dependency.
 So I built one.
 
-## Features
+## Other Features
 -  Supports searching for the specific kanji.
 - ​ Can also search using the English meaning.
 -  Can BookMark Favourite Kanji and View then on through BookMark Menu.
@@ -72,9 +78,17 @@ If you want to run or modify the code in your own IDE (like NetBeans):
 
 1. **Prerequisite:** You must use the **BellSoft Liberica JDK (Full version)** (e.g., version 21). The "Full" version includes the necessary JavaFX modules bundled directly into the JDK.
 2. Clone the repository:
-   ```bash
+```bash
    git clone [https://github.com/SuperAnand67/Japanese-Dictionary-JavaFX.git](https://github.com/SuperAnand67/Japanese-Dictionary-JavaFX.git
-   ```
+```
+ 3. To Build the Project:
+```bash
+    mvn clean package
+```
+4. To Run:
+```bash
+    mvn javafx:run
+```
 
 ## Note on Database
 ~~Make sure that the Database File (kanjiDict.db) in the /opt/japanesedictionary/lib/app/ Folder.~~
