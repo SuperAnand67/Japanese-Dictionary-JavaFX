@@ -6,11 +6,16 @@ Built by a Japanese learner, for Japanese learners.
 It displays the kanji, its meaning, its onyomi and kunyomi readings, and the number of strokes.
 
 ## Screenshots
-<img width="617" height="545" alt="japanese-dictionary1" src="https://github.com/user-attachments/assets/687d8353-7169-4db7-9cc7-29fccfaa4e52" />
+<img width="617" height="545" alt="JapaneseDictionary-1" src="https://github.com/user-attachments/assets/b56f7c78-acde-4efc-93f8-c3b82faa9e7a" />
 
-<img width="617" height="545" alt="japanese-dictionary4" src="https://github.com/user-attachments/assets/5d0d738b-12c1-4b9f-8100-650bf97d081c" />
+<img width="617" height="545" alt="JapaneseDictionary-2" src="https://github.com/user-attachments/assets/a084e6d9-1c84-4190-8fa4-7c08a3ec78b6" />
 
-<img width="617" height="545" alt="japanese-dictionary2" src="https://github.com/user-attachments/assets/08fd19fe-b019-4d4e-b48c-e87336e21123" />
+<img width="617" height="545" alt="JapaneseDictionary-5" src="https://github.com/user-attachments/assets/58eb0b87-1806-410c-a8b4-f175ab6c937b" />
+
+<img width="617" height="545" alt="JapaneseDictionary-3" src="https://github.com/user-attachments/assets/ec2ddb50-f3dc-470b-bdff-3dc23b562b52" />
+
+<img width="612" height="546" alt="JapaneseDictionary-6" src="https://github.com/user-attachments/assets/9a8f9f8c-2545-470c-b118-c671b68f37d3" />
+
 
 ## Why I Built This
 I am currently learning Japanese and preparing for JLPT N5.
@@ -79,7 +84,6 @@ Now the App automatically places the Database File (kanjiDict.db) directly in th
 ## Planned Features
 - Search by radical (部首)
 - Furigana display
-- Dark mode
 - Many More Coming Soon !!!
 
 ## License

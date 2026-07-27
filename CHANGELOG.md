@@ -5,6 +5,23 @@ All notable changes to the **Japanese Dictionary (JavaFX)** project will be docu
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-07-27
+
+### Added
+- **AtlantaFX:** Integrated a modern JavaFX theme library to improve the application's look and feel.
+- **Theme Switching:** Added support for switching between Dark and Light themes.
+- **Theme Persistence:** Added automatic saving and restoration of the selected theme using the Java Preferences API.
+
+### Changed
+- **Build System:** Migrated the project from Apache Ant to Apache Maven.
+- **Project Structure**: Refactored the project layout for improved maintainability and dependency management.
+- **UI:** Updated the application's visual appearance with AtlantaFX styling.
+
+### Fixed
+- **Codebase:** Performed general code cleanup and refactoring.
+- **UI:** Resolved minor visual inconsistencies.
+- **Miscellaneous:** Applied various internal improvements and optimizations.
+
 ## [1.3.0] - 2026-03-18
 
 ### Added
