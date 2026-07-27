@@ -1,4 +1,3 @@
-<img width="617" height="545" alt="JapaneseDictionary-1" src="https://github.com/user-attachments/assets/5671a628-ccac-4b4a-ba1f-a92e7274aa16" />
 # Japanese Kanji Dictionary
 
 ## Description
