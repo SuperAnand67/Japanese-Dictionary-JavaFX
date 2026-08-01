@@ -20,7 +20,7 @@ A modern, **offline-first** Japanese learning desktop application built with **J
 
 # 📸 Screenshots
 
-> *<img width="617" height="545" alt="JapaneseDictionary-1" src="https://github.com/user-attachments/assets/b56f7c78-acde-4efc-93f8-c3b82faa9e7a" />
+> <img width="617" height="545" alt="JapaneseDictionary-1" src="https://github.com/user-attachments/assets/b56f7c78-acde-4efc-93f8-c3b82faa9e7a" />
 
 <img width="617" height="545" alt="JapaneseDictionary-2" src="https://github.com/user-attachments/assets/a084e6d9-1c84-4190-8fa4-7c08a3ec78b6" />
 
@@ -28,7 +28,7 @@ A modern, **offline-first** Japanese learning desktop application built with **J
 
 <img width="617" height="545" alt="JapaneseDictionary-3" src="https://github.com/user-attachments/assets/ec2ddb50-f3dc-470b-bdff-3dc23b562b52" />
 
-<img width="612" height="546" alt="JapaneseDictionary-6" src="https://github.com/user-attachments/assets/9a8f9f8c-2545-470c-b118-c671b68f37d3" />*
+<img width="612" height="546" alt="JapaneseDictionary-6" src="https://github.com/user-attachments/assets/9a8f9f8c-2545-470c-b118-c671b68f37d3" />
 
 ---
 
