@@ -1,87 +1,114 @@
-# Japanese Dictionary & Kanji Learning Platform
+# 📖 Japanese Dictionary & Kanji Learning Platform
 
-A modern, **offline-first** Japanese learning desktop application built with **JavaFX**, **SQLite**, and **Maven**. Designed for fast Kanji lookup, structured study, and cross-platform compatibility without requiring an internet connection.
+A lightweight, offline-first Japanese learning desktop application built with **Java**, **JavaFX**, and **SQLite**.
+
+Designed for Japanese learners who want fast Kanji lookup, personal vocabulary tracking, and a distraction-free study experience — without depending on an internet connection.
+
+![Java](https://img.shields.io/badge/Java-25-orange?style=for-the-badge&logo=openjdk)
+![JavaFX](https://img.shields.io/badge/JavaFX-25-blue?style=for-the-badge)
+![SQLite](https://img.shields.io/badge/SQLite-Local%20Database-003B57?style=for-the-badge&logo=sqlite)
+![Maven](https://img.shields.io/badge/Maven-Build%20Tool-C71A36?style=for-the-badge&logo=apachemaven)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 ---
 
 ## ✨ Features
 
-- 🔍 Instant Kanji lookup
-- 🇬🇧 Search Kanji using English meanings
-- ⭐ Bookmark favorite Kanji
-- 📚 Bookmark and organize frequently used Kanji
-- 🈶 Display Onyomi, Kunyomi, stroke count, meanings, and related Kanji
-- 🌙 Dark & Light theme support
-- ⚡ Fast local database with zero network dependency
-- 💻 Native support for Windows and Linux
-- 📦 Offline-first architecture
+- 🔍 **Kanji Lookup** — Quickly search and view Kanji information
+- 🇬🇧 **English Meaning Search** — Find Kanji using English meanings
+- ⭐ **Bookmarks** — Save Kanji for later study
+- 🈶 **Kanji Information** — View Onyomi, Kunyomi, meanings, stroke count, and related information
+- 🌙 **Dark & Light Themes** — Switch between themes based on your preference
+- 💾 **Persistent Local Data** — Bookmarks and user data are stored locally
+- ⚡ **Fast Local Search** — SQLite-powered search without network requests
+- 📶 **Fully Offline** — No internet connection required
+- 💻 **Cross-Platform** — Supports Windows and Linux
+- 📦 **Native Installers** — Distributed as Windows `.msi` and Linux `.deb` packages
 
 ---
 
-# 📸 Screenshots
+## 📸 Screenshots
 
-> <img width="617" height="545" alt="JapaneseDictionary-1" src="https://github.com/user-attachments/assets/b56f7c78-acde-4efc-93f8-c3b82faa9e7a" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b56f7c78-acde-4efc-93f8-c3b82faa9e7a" width="45%">
+  <img src="https://github.com/user-attachments/assets/a084e6d9-1c84-4190-8fa4-7c08a3ec78b6" width="45%">
+</p>
 
-> <img width="617" height="545" alt="JapaneseDictionary-2" src="https://github.com/user-attachments/assets/a084e6d9-1c84-4190-8fa4-7c08a3ec78b6" />
-
-> <img width="617" height="545" alt="JapaneseDictionary-5" src="https://github.com/user-attachments/assets/58eb0b87-1806-410c-a8b4-f175ab6c937b" />
-
-> <img width="617" height="545" alt="JapaneseDictionary-3" src="https://github.com/user-attachments/assets/ec2ddb50-f3dc-470b-bdff-3dc23b562b52" />
-
-<img width="612" height="546" alt="JapaneseDictionary-6" src="https://github.com/user-attachments/assets/9a8f9f8c-2545-470c-b118-c671b68f37d3" />
-
----
-
-# 🎯 Why I Built This
-
-As someone learning Japanese and preparing for the **JLPT N5**, I wanted a lightweight, distraction-free dictionary that worked entirely offline.
-
-Most available solutions were either web-based, mobile-focused, or required a constant internet connection. I built this application to provide a fast, cross-platform desktop experience for studying Kanji efficiently on both Windows and Linux.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/58eb0b87-1806-410c-a8b4-f175ab6c937b" width="45%">
+  <img src="https://github.com/user-attachments/assets/ec2ddb50-f3dc-470b-bdff-3dc23b562b52" width="45%">
+</p>
 
 ---
 
-# 🏗 Architecture
+## 🎯 Motivation
 
-The application follows the **Model–View–Controller (MVC)** architecture, making the codebase modular, maintainable, and easier to extend as new features are added.
+I built this application while learning Japanese and preparing for the **JLPT N5**.
+
+I wanted a desktop application that was:
+
+- Fast
+- Lightweight
+- Completely offline
+- Focused on Kanji learning
+- Available on both Windows and Linux
+
+Instead of relying on a web-based dictionary, this project provides a local learning environment with persistent user data and a native desktop experience.
+
+---
+
+## 🏗️ Architecture
+
+The application follows the **Model–View–Controller (MVC)** architecture.
 
 ```text
-User
-   │
-JavaFX UI
-   │
-Controller
-   │
-SQLite Database (JDBC)
+                    ┌─────────────────┐
+                    │      User       │
+                    └────────┬────────┘
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │   JavaFX UI     │
+                    │      View       │
+                    └────────┬────────┘
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │   Controller    │
+                    └────────┬────────┘
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │     Model       │
+                    └────────┬────────┘
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │ SQLite Database │
+                    │      JDBC       │
+                    └─────────────────┘
 ```
 
----
-
-# 🚀 Performance
-
-Because all data is stored locally in SQLite, the application offers:
-
-- ⚡ Near-instant search results
-- 📶 No internet connection required
-- 💾 Low memory usage
-- 🚀 Fast application startup
-- 🔒 Complete offline functionality
+The UI is separated from database operations, allowing the application logic and persistence layer to remain independent of the JavaFX interface.
 
 ---
 
-# 🛠 Technology Stack
+## 🛠️ Technology Stack
 
 | Category | Technology |
-|-----------|------------|
+|---|---|
 | Language | Java |
 | UI Framework | JavaFX |
 | Database | SQLite |
 | Database Access | JDBC |
-| Build Tool | Maven |
+| Build System | Maven |
 | UI Theme | AtlantaFX |
+| Packaging | `jpackage` |
+| Version Control | Git / GitHub |
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
 ```text
 src/
@@ -93,36 +120,38 @@ src/
 └── resources/
 ```
 
+The project is organized around the MVC architecture with dedicated components for models, controllers, database operations, UI components, utilities, and application resources.
+
 ---
 
-# 📦 Installation
+## 📦 Installation
 
-## Windows
+### Windows
 
-1. Download the latest **.msi** installer from the **Releases** page.
-2. Run the installer.
+Download the latest `.msi` installer from the **Releases** page.
+
+1. Download the installer.
+2. Run the `.msi` file.
 3. Follow the installation wizard.
 4. Launch the application from the Start Menu.
 
----
+### Linux
 
-## Linux (Debian / Ubuntu)
+Download the latest `.deb` package from the **Releases** page.
 
-Download the latest **.deb** package from the **Releases** page.
-
-Install it using:
+Install it with:
 
 ```bash
-sudo dpkg -i japanesedictionary_1.0_amd64.deb
+sudo dpkg -i japanesedictionary_*.deb
 ```
 
-If any dependencies are missing:
+If dependencies are required:
 
 ```bash
 sudo apt install -f
 ```
 
-Launch the application:
+Then launch:
 
 ```bash
 japanesedictionary
@@ -130,32 +159,28 @@ japanesedictionary
 
 ---
 
-# 💻 Building From Source
+## 🔨 Building From Source
 
-## Requirements
+### Requirements
 
-- BellSoft Liberica JDK (Full Edition)
-- Maven
+- **JDK 25**
+- **Maven**
+- Linux or Windows
 
 Clone the repository:
 
 ```bash
 git clone https://github.com/SuperAnand67/Japanese-Dictionary-JavaFX.git
-```
-
-Navigate to the project directory:
-
-```bash
 cd Japanese-Dictionary-JavaFX
 ```
 
-Build the project:
+Build:
 
 ```bash
 mvn clean package
 ```
 
-Run the application:
+Run:
 
 ```bash
 mvn javafx:run
@@ -163,56 +188,89 @@ mvn javafx:run
 
 ---
 
-# 💾 Database
+## 💾 Data & Privacy
 
-The application automatically creates and manages its SQLite database inside the user's local application directory during installation.
+The application is designed to work entirely locally.
 
-No manual configuration is required.
-
----
-
-# 🛣 Roadmap
-
-## ✅ Completed
-
-- Offline Kanji Dictionary
-- English Meaning Search
-- Bookmark System
-- Dark / Light Theme
-- Native Windows Installer
-- Native Linux Package
-- Maven Migration
-- MVC Refactoring
-- Cross-platform Support
-
-## 🚧 Planned
-
-- Search by Radical (部首)
-- JLPT Vocabulary Lists
-- Example Sentences
-- Furigana Support
-- Flashcards
-- Search History
-- Import / Export Bookmarks
-- Audio Pronunciation
-- Stroke Order Animations
+User data such as bookmarks is stored in a local SQLite database. The application does not require an external server or continuous internet connection for its core functionality.
 
 ---
 
-# 🤝 Contributing
+## 🛣️ Roadmap
 
-Contributions, feature requests, bug reports, and suggestions are welcome.
+### ✅ Completed
 
-1. Fork the repository.
-2. Create a new feature branch.
-3. Commit your changes.
-4. Push your branch.
-5. Open a Pull Request.
+- [x] Offline Kanji Dictionary
+- [x] English Meaning Search
+- [x] Bookmark System
+- [x] Dark / Light Themes
+- [x] Native Windows Installer
+- [x] Native Linux Package
+- [x] Maven Migration
+- [x] MVC Refactoring
+- [x] Cross-platform Support
+
+### 🚧 Planned
+
+- [ ] Radical (部首) Search
+- [ ] JLPT Vocabulary Lists
+- [ ] Example Sentences
+- [ ] Furigana Support
+- [ ] Flashcards
+- [ ] Search History
+- [ ] Bookmark Import / Export
+- [ ] Audio Pronunciation
+- [ ] Stroke Order Animations
 
 ---
 
-# 📄 License
+## 📋 Version History
+
+See [`CHANGELOG.md`](CHANGELOG.md) for the complete project history.
+
+Recent development includes:
+
+- **v1.4.0** — AtlantaFX themes, dark/light theme switching, theme persistence, Maven migration, and project restructuring
+- **v1.3.0** — Kanji management improvements, tooltips, navigation redesign, and ListView performance improvements
+- **v1.2.0** — Bookmarks and native Windows/Linux packaging
+- **v1.1.0** — MVC architecture and database separation
+- **v1.0.0** — Initial release
+
+---
+
+## 🤝 Contributing
+
+Contributions, bug reports, feature requests, and suggestions are welcome.
+
+If you would like to contribute:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Commit your changes
+5. Push the branch
+6. Open a Pull Request
+
+---
+
+## 📄 License
 
 This project is licensed under the **MIT License**.
 
-Feel free to use, modify, and distribute it in accordance with the license terms.
+See [`LICENSE`](LICENSE) for the full license text.
+
+---
+
+## 👨‍💻 Author
+
+**Anand P**
+
+Computer Science Engineering Student • Java Developer • Linux Enthusiast
+
+GitHub: [@SuperAnand67](https://github.com/SuperAnand67)
+
+---
+
+<p align="center">
+  Built with ☕ Java and ❤️ for Japanese learning.
+</p>
